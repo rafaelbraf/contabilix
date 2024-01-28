@@ -43,7 +43,14 @@ jobs:
       - name: Run docker container frontend
         run: docker run -d -p 80:80 --name frontend rafaelbrunof/frontend
 
-      - name: Pull PostgreSQL image from docker hub
+      - name: Check if PostgreSQL container exists
+        id: check_postgres_container
+        run: echo "::set-output name=CONTAINER_EXISTS::$(docker inspect -f '{{.State.Running}}' postgres 2>/dev/null || echo false)"
+
+      - name: Pull PostgreSQL image from Docker Hub
+        if: ${{ steps.check_postgres_container.outputs.CONTAINER_EXISTS == 'false' }}
         run: docker pull postgres:latest
-      - name: Run docker container postgres
+
+      - name: Run Docker container PostgreSQL
+        if: ${{ steps.check_postgres_container.outputs.CONTAINER_EXISTS == 'false' }}
         run: docker run -d -p 5432:5432 --name postgres -v ./scripts:/docker-entrypoint-initdb.d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=minha_senha -e POSTGRES_DB=irpf postgres
