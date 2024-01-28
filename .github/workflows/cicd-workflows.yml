@@ -41,7 +41,7 @@ jobs:
       - name: Delete old container
         run: docker rm -f frontend
       - name: Run docker container frontend
-        run: docker run -d -p 8080:80 --name frontend rafaelbrunof/frontend
+        run: docker run -d -p 80:80 --name frontend rafaelbrunof/frontend
 
       - name: Pull PostgreSQL image from docker hub
         run: docker pull postgres:latest
