@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="pt-br" data-bs-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contabilix - Contribuintes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/contribuintes.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Contabilix</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="home.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contribuintes.html">Contribuintes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="irpf.html">IRPFs</a>
+                    </li>
+                </ul>
+            </div>
+            <button class="btn btn-danger" id="btnSair">Sair</button>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1>IRPFs</h1>
+            <button class="btn btn-primary" id="btnIniciarImpostoDeRenda">Iniciar Imposto de Renda</button>
+        </div>
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Situação Atual</th>
+                    <th scope="col">Ano Referência</th>
+                    <th scope="col">Contribuinte</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-impostos-renda">
+                
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal de Confirmação -->
+    <div class="modal fade" id="confirmacaoSairModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmacaoModalLabel">Confirmação</h5>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja sair do Contabilix?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarSair">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Inserir Imposto de Renda -->
+    <div class="modal fade" id="iniciarImpostoDeRendaModal" tabindex="-1" role="dialog" aria-labelledby="iniciarImpostoDeRendaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="iniciarImpostoDeRendaModalLabel">Iniciar Imposto de Renda</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                          <label for="contribuinte" class="col-form-label">Selecionar Contribuinte:</label>
+                          <select class="form-select" id="selectContribuinte" aria-label="Floating label select example">
+                            <option selected>--</option>
+                          </select>
+                        </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Ano referência:</label>
+                          <input type="text" class="form-control" placeholder="Ex: 2024" id="anoReferenciaImpostoDeRenda">
+                        </div>
+                        <div id="alert-modal-erro"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnIniciarImpostoDeRenda" onclick="iniciarImpostoDeRenda()">Iniciar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="alert-sucess-imposto-renda"></div>
+    <div id="alert-erro"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="../js/verifyToken.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/irpf.js"></script>
+  </body>
+</html>
