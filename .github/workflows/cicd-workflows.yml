@@ -34,7 +34,7 @@ jobs:
       - name: Delete old container
         run: docker rm -f contabilix
       - name: Run docker container contabilix
-        run: docker run -d -p 8081:8081 --name contabilix -e DB_URL=${{ secrets.POSTGRES_URL }} -e DB_USER=${{ secrets.POSTGRES_USER }} -e DB_PASS=${{ secrets.POSTGRES_PASS }} rafaelbrunof/contabilix
+        run: docker run -d -p 8081:8081 --name contabilix -e DB_URL=${{ secrets.POSTGRES_URL }} -e DB_USER=${{ secrets.POSTGRES_USER }} -e DB_PASS=${{ secrets.POSTGRES_PASSWORD }} rafaelbrunof/contabilix
 
       - name: Pull Contabilix Frontend image from docker hub
         run: docker pull rafaelbrunof/frontend:latest
