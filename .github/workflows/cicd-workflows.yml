@@ -34,7 +34,7 @@ jobs:
       - name: Delete old container
         run: docker rm -f contabilix
       - name: Run docker container contabilix
-        run: docker run -d -p 8081:8081 --name contabilix rafaelbrunof/contabilix
+        run: docker run -d -p 8081:8081 --name contabilix -e DB_URL=${{ secrets.POSTGRES_URL }} -e DB_USER=${{ secrets.POSTGRES_USER }} -e DB_PASS=${{ secrets.POSTGRES_PASS }} rafaelbrunof/contabilix
 
       - name: Pull Contabilix Frontend image from docker hub
         run: docker pull rafaelbrunof/frontend:latest
@@ -43,14 +43,7 @@ jobs:
       - name: Run docker container frontend
         run: docker run -d -p 80:80 --name frontend rafaelbrunof/frontend
 
-      - name: Check if PostgreSQL container exists
-        id: check_postgres_container
-        run: echo "::set-output name=CONTAINER_EXISTS::$(docker inspect -f '{{.State.Running}}' postgres 2>/dev/null || echo false)"
-
       - name: Pull PostgreSQL image from Docker Hub
-        if: ${{ steps.check_postgres_container.outputs.CONTAINER_EXISTS == 'false' }}
         run: docker pull postgres:latest
-
       - name: Run Docker container PostgreSQL
-        if: ${{ steps.check_postgres_container.outputs.CONTAINER_EXISTS == 'false' }}
-        run: docker run -d -p 5432:5432 --name postgres -v ./scripts:/docker-entrypoint-initdb.d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=minha_senha -e POSTGRES_DB=irpf postgres
+        run: docker run -d -p 5432:5432 --name postgres -v ./scripts:/docker-entrypoint-initdb.d -e POSTGRES_USER=${{ secrets.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASS }} -e POSTGRES_DB=${{ secrets.POSTGRES_DB }} postgres
