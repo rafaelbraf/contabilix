@@ -46,4 +46,4 @@ jobs:
       - name: Pull PostgreSQL image from Docker Hub
         run: docker pull postgres:latest
       - name: Run Docker container PostgreSQL
-        run: docker run -d -p 5432:5432 --name postgres -v ./scripts:/docker-entrypoint-initdb.d -e POSTGRES_USER=${{ secrets.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASS }} -e POSTGRES_DB=${{ secrets.POSTGRES_DB }} postgres
+        run: docker run -d -p 5432:5432 --name postgres -v ./scripts:/docker-entrypoint-initdb.d -e POSTGRES_USER=${{ secrets.POSTGRES_USER }} -e POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} -e POSTGRES_DB=${{ secrets.POSTGRES_DB }} postgres
