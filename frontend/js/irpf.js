@@ -16,7 +16,7 @@ buttonInserirImpostoDeRenda.addEventListener('click', () => {
 });
 
 async function getContribuintes() {
-    const url = 'http://18.208.190.47:8081/api/contribuintes';
+    const url = 'http://54.160.250.66:8081/api/contribuintes';
 
     fetch(url, {
         method: 'GET',
@@ -63,7 +63,7 @@ async function iniciarImpostoDeRenda() {
     } else {
         modalInserirImpostoDeRenda.hide();
 
-        const url = 'http://18.208.190.47:8081/api/impostorenda';
+        const url = 'http://54.160.250.66:8081/api/impostorenda';
         fetch(url, {
             method: 'POST',
             headers: {

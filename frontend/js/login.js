@@ -27,7 +27,7 @@ async function login() {
     }
 
     try {
-        const response = await fetch('http://18.208.190.47:8081/login', {
+        const response = await fetch('http://54.160.250.66:8081/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

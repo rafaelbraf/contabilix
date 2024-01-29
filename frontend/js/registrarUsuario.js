@@ -26,7 +26,7 @@ async function cadastrar() {
     }
 
     try {
-        const response = await fetch('http://18.208.190.47:8081/registrar', {
+        const response = await fetch('http://54.160.250.66:8081/registrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
