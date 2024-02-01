@@ -1,3 +1,18 @@
+const loadEnv = async () => {
+    const response = await fetch('.env');
+    const envText = await response.text();
+    const envLines = envText.split('\n');
+
+    for (const line in envLines) {
+        const [key, value] = line.split('=');
+        if (key && value) {
+            window[key.trim()] = value.trim();
+        }
+    }
+};
+
+loadEnv();
+
 document.addEventListener('DOMContentLoaded', async function() {
     try {
         const totalContribuintes = await getTotalContribuintes();
@@ -11,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 async function getTotalContribuintes() {
-    const url = 'http://3.84.224.164:8081/api/contribuintes';
+    const url = 'http://' + HOST_BACKEND + ':8081/api/contribuintes';
 
     const response = await fetch(url, {
         method: 'GET',
@@ -27,7 +42,7 @@ async function getTotalContribuintes() {
 }
 
 async function getTotalImpostosRenda() {    
-    const url = 'http://3.84.224.164:8081/api/impostorenda';
+    const url = 'http://' + HOST_BACKEND + ':8081/api/impostorenda';
 
     const response = await fetch(url, {
         method: 'GET',

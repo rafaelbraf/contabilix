@@ -1,3 +1,18 @@
+const loadEnv = async () => {
+    const response = await fetch('.env');
+    const envText = await response.text();
+    const envLines = envText.split('\n');
+
+    for (const line in envLines) {
+        const [key, value] = line.split('=');
+        if (key && value) {
+            window[key.trim()] = value.trim();
+        }
+    }
+};
+
+loadEnv();
+
 const tabelaImpostosDeRendas = document.getElementById('tbody-impostos-renda');
 const buttonInserirImpostoDeRenda = document.getElementById('btnIniciarImpostoDeRenda');
 const modalInserirImpostoDeRenda = new bootstrap.Modal(document.getElementById('iniciarImpostoDeRendaModal'));
@@ -16,7 +31,7 @@ buttonInserirImpostoDeRenda.addEventListener('click', () => {
 });
 
 async function getContribuintes() {
-    const url = 'http://3.84.224.164:8081/api/contribuintes';
+    const url = 'http://' + HOST_BACKEND + ':8081/api/contribuintes';
 
     fetch(url, {
         method: 'GET',
@@ -63,7 +78,7 @@ async function iniciarImpostoDeRenda() {
     } else {
         modalInserirImpostoDeRenda.hide();
 
-        const url = 'http://3.84.224.164:8081/api/impostorenda';
+        const url = 'http://' + HOST_BACKEND + ':8081/api/impostorenda';
         fetch(url, {
             method: 'POST',
             headers: {
@@ -87,7 +102,7 @@ async function iniciarImpostoDeRenda() {
 }
 
 async function getImpostosDeRendas() {
-    const url = 'http://3.84.224.164:8081/api/impostorenda';
+    const url = 'http://' + HOST_BACKEND + ':8081/api/impostorenda';
 
     try {
         const response = await fetch(url, {

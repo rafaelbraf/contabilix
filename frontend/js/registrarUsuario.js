@@ -1,3 +1,18 @@
+const loadEnv = async () => {
+    const response = await fetch('.env');
+    const envText = await response.text();
+    const envLines = envText.split('\n');
+
+    for (const line in envLines) {
+        const [key, value] = line.split('=');
+        if (key && value) {
+            window[key.trim()] = value.trim();
+        }
+    }
+};
+
+loadEnv();
+
 const alertDanger = 'danger';
 const alertSuccess = 'success';
 
@@ -26,7 +41,7 @@ async function cadastrar() {
     }
 
     try {
-        const response = await fetch('http://3.84.224.164:8081/registrar', {
+        const response = await fetch('http://' + HOST_BACKEND + ':8081/registrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
