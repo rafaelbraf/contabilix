@@ -13,7 +13,7 @@ async function getContribuintes() {
     const usuario = await getUsuario()
 
     let mensagemErro;
-    const url = 'http://3.83.150.252:8081/api/contribuintes/usuario/' + usuario.id;
+    const url = 'http://3.84.224.164:8081/api/contribuintes/usuario/' + usuario.id;
 
     try {
         const response = await fetch(url, {
@@ -136,7 +136,7 @@ function Contribuinte(cpf, nome, dataNascimento, email, celular, endereco, natur
 
 async function inserirContribuintes(contribuintes) {
     let mensagemErro;
-    const url = 'http://3.83.150.252:8081/api/contribuintes/lista';
+    const url = 'http://3.84.224.164:8081/api/contribuintes/lista';
 
     try {
         const response = await fetch(url, {
@@ -227,7 +227,7 @@ async function exibirDetalhesDoContribuinte(contribuinte) {
 
 async function getImpostosDeRendasDoContribuinte(contribuinte)  {
     const contribuinteId = contribuinte.id;
-    const url = 'http://3.83.150.252:8081/api/impostorenda/contribuinte/' + contribuinteId;
+    const url = 'http://3.84.224.164:8081/api/impostorenda/contribuinte/' + contribuinteId;
 
     try {
         const response = await fetch(url, {
@@ -254,7 +254,7 @@ async function getImpostosDeRendasDoContribuinte(contribuinte)  {
 }
 
 async function getUsuario() {
-    const url = 'http://3.83.150.252:8081/api/usuarios'
+    const url = 'http://3.84.224.164:8081/api/usuarios'
 
     try {
         const response = await fetch(url, {

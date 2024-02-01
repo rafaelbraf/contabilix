@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 async function getTotalContribuintes() {
-    const url = 'http://3.83.150.252:8081/api/contribuintes';
+    const url = 'http://3.84.224.164:8081/api/contribuintes';
 
     const response = await fetch(url, {
         method: 'GET',
@@ -27,7 +27,7 @@ async function getTotalContribuintes() {
 }
 
 async function getTotalImpostosRenda() {    
-    const url = 'http://3.83.150.252:8081/api/impostorenda';
+    const url = 'http://3.84.224.164:8081/api/impostorenda';
 
     const response = await fetch(url, {
         method: 'GET',
